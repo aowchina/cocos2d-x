@@ -723,6 +723,8 @@ public:
     virtual void update(float t);
     virtual CCActionInterval* reverse(void);
 
+    int nextFrame(void) const { return m_nNextFrame; }
+
 public:
     /** creates the action with an Animation and will restore the original frame when the animation is over */
     static CCAnimate* create(CCAnimation *pAnimation);

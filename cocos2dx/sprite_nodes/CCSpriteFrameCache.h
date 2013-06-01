@@ -69,6 +69,9 @@ private:
      */
     void addSpriteFramesWithDictionary(CCDictionary* pobDictionary, CCTexture2D *pobTexture);
 public:
+
+    void addSpriteFramesWithDictionary(CCDictionary* dictionary, CCTexture2D *pobTexture, const char *pszPlist);
+
     /** Adds multiple Sprite Frames from a plist file.
      * A texture will be loaded automatically. The texture name will composed by replacing the .plist suffix with .png
      * If you want to use another texture, you should use the addSpriteFramesWithFile:texture method.

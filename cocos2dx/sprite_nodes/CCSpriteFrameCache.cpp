@@ -201,6 +201,12 @@ void CCSpriteFrameCache::addSpriteFramesWithDictionary(CCDictionary* dictionary,
     }
 }
 
+
+void CCSpriteFrameCache::addSpriteFramesWithDictionary(CCDictionary* dictionary, CCTexture2D *pobTexture, const char *pszPlist) {
+    addSpriteFramesWithDictionary(dictionary, pobTexture);
+	m_pLoadedFileNames->insert(pszPlist);
+}
+
 void CCSpriteFrameCache::addSpriteFramesWithFile(const char *pszPlist, CCTexture2D *pobTexture)
 {
     std::string fullPath = CCFileUtils::sharedFileUtils()->fullPathForFilename(pszPlist);

@@ -88,6 +88,8 @@ public:
     */
     CCTexture2D* addImage(const char* fileimage);
 
+    CCTexture2D* addImage(const char* fileimage, const char *key);
+
     /* Returns a Texture2D object given a file image
     * If the file image was not previously loaded, it will create a new CCTexture2D object and it will return it.
     * Otherwise it will load a texture in a new thread, and when the image is loaded, the callback will be called with the Texture2D as a parameter.
@@ -154,6 +156,7 @@ public:
     *  object and it will return it. Otherwise it will return a reference of a previously loaded image
     */
     CCTexture2D* addPVRImage(const char* filename);
+	CCTexture2D* addPVRImage(const char* filename, const char *key);
     
     /** Returns a Texture2D object given an ETC filename
      * If the file image was not previously loaded, it will create a new CCTexture2D

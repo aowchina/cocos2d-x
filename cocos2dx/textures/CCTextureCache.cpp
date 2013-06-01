@@ -456,20 +456,116 @@ CCTexture2D * CCTextureCache::addImage(const char * path)
     return texture;
 }
 
+CCTexture2D* CCTextureCache::addImage(const char* path, const char *key) {
+	CCAssert(path != NULL, "TextureCache: fileimage MUST not be NULL");
+
+    CCTexture2D * texture = NULL;
+    CCImage* pImage = NULL;
+    // Split up directory and filename
+    // MUTEX:
+    // Needed since addImageAsync calls this method from a different thread
+
+    //pthread_mutex_lock(m_pDictLock);
+
+    std::string pathKey = path;
+
+    pathKey = CCFileUtils::sharedFileUtils()->fullPathForFilename(pathKey.c_str());
+    if (pathKey.size() == 0)
+    {
+        return NULL;
+    }
+    texture = (CCTexture2D*)m_pTextures->objectForKey(pathKey.c_str());
+
+    std::string fullpath = pathKey; // (CCFileUtils::sharedFileUtils()->fullPathFromRelativePath(path));
+    if (! texture)
+    {
+        std::string lowerCase(pathKey);
+        for (unsigned int i = 0; i < lowerCase.length(); ++i)
+        {
+            lowerCase[i] = tolower(lowerCase[i]);
+        }
+        // all images are handled by UIImage except PVR extension that is handled by our own handler
+        do
+        {
+            if (std::string::npos != lowerCase.find(".pvr"))
+            {
+                texture = this->addPVRImage(fullpath.c_str(), key);
+            }
+            else
+            {
+                CCImage::EImageFormat eImageFormat = CCImage::kFmtUnKnown;
+                if (std::string::npos != lowerCase.find(".png"))
+                {
+                    eImageFormat = CCImage::kFmtPng;
+                }
+                else if (std::string::npos != lowerCase.find(".jpg") || std::string::npos != lowerCase.find(".jpeg"))
+                {
+                    eImageFormat = CCImage::kFmtJpg;
+                }
+                else if (std::string::npos != lowerCase.find(".tif") || std::string::npos != lowerCase.find(".tiff"))
+                {
+                    eImageFormat = CCImage::kFmtTiff;
+                }
+                else if (std::string::npos != lowerCase.find(".webp"))
+                {
+                    eImageFormat = CCImage::kFmtWebp;
+                }
+
+                pImage = new CCImage();
+                CC_BREAK_IF(NULL == pImage);
+
+                unsigned long nSize = 0;
+                unsigned char* pBuffer = CCFileUtils::sharedFileUtils()->getFileData(fullpath.c_str(), "rb", &nSize);
+
+                bool bRet = pImage->initWithImageData((void*)pBuffer, nSize, eImageFormat);
+                CC_SAFE_DELETE_ARRAY(pBuffer);
+                CC_BREAK_IF(!bRet);
+
+                texture = new CCTexture2D();
+
+                if( texture &&
+				   texture->initWithImage(pImage) )
+                {
+#if CC_ENABLE_CACHE_TEXTURE_DATA
+                    // cache the texture file name
+                    VolatileTexture::addImageTexture(texture, fullpath.c_str(), eImageFormat);
+#endif
+//                    m_pTextures->setObject(texture, pathKey.c_str());
+					m_pTextures->setObject(texture, key);
+                    texture->release();
+                }
+                else
+                {
+                    CCLOG("cocos2d: Couldn't create texture for file:%s in CCTextureCache", path);
+                }
+            }
+        } while (0);
+    }
+
+    CC_SAFE_RELEASE(pImage);
+
+    //pthread_mutex_unlock(m_pDictLock);
+    return texture;
+}
+
 CCTexture2D * CCTextureCache::addPVRImage(const char* path)
 {
-    CCAssert(path != NULL, "TextureCache: fileimage MUST not be nil");
+	return addPVRImage(path, path);
+}
 
+CCTexture2D* CCTextureCache::addPVRImage(const char* path, const char *key) {
+	CCAssert(path != NULL, "TextureCache: fileimage MUST not be nil");
+	
     CCTexture2D* texture = NULL;
-    std::string key(path);
+	//    std::string key(path);
     
-    if( (texture = (CCTexture2D*)m_pTextures->objectForKey(key.c_str())) ) 
+    if( (texture = (CCTexture2D*)m_pTextures->objectForKey(key)) )
     {
         return texture;
     }
-
+	
     // Split up directory and filename
-    std::string fullpath = CCFileUtils::sharedFileUtils()->fullPathForFilename(key.c_str());
+    std::string fullpath = CCFileUtils::sharedFileUtils()->fullPathForFilename(path);
     texture = new CCTexture2D();
     if(texture != NULL && texture->initWithPVRFile(fullpath.c_str()) )
     {
@@ -477,15 +573,15 @@ CCTexture2D * CCTextureCache::addPVRImage(const char* path)
         // cache the texture file name
         VolatileTexture::addImageTexture(texture, fullpath.c_str(), CCImage::kFmtRawData);
 #endif
-        m_pTextures->setObject(texture, key.c_str());
+        m_pTextures->setObject(texture, key);
         texture->autorelease();
     }
     else
     {
-        CCLOG("cocos2d: Couldn't add PVRImage:%s in CCTextureCache",key.c_str());
+        CCLOG("cocos2d: Couldn't add PVRImage:%s in CCTextureCache",key);
         CC_SAFE_DELETE(texture);
     }
-
+	
     return texture;
 }
 
