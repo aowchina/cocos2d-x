@@ -170,7 +170,7 @@ void CCMenuItemLabel::setLabel(CCNode* var)
     if (var)
     {
         addChild(var);
-        var->setAnchorPoint(ccp(0, 0));
+//        var->setAnchorPoint(ccp(0, 0));
         setContentSize(var->getContentSize());
     }
     
@@ -419,7 +419,7 @@ void CCMenuItemSprite::setNormalImage(CCNode* pImage)
         if (pImage)
         {
             addChild(pImage, 0, kNormalTag);
-            pImage->setAnchorPoint(ccp(0, 0));
+//            pImage->setAnchorPoint(ccp(0, 0));
         }
 
         if (m_pNormalImage)
@@ -445,7 +445,7 @@ void CCMenuItemSprite::setSelectedImage(CCNode* pImage)
         if (pImage)
         {
             addChild(pImage, 0, kSelectedTag);
-            pImage->setAnchorPoint(ccp(0, 0));
+//            pImage->setAnchorPoint(ccp(0, 0));
         }
 
         if (m_pSelectedImage)
@@ -470,7 +470,7 @@ void CCMenuItemSprite::setDisabledImage(CCNode* pImage)
         if (pImage)
         {
             addChild(pImage, 0, kDisableTag);
-            pImage->setAnchorPoint(ccp(0, 0));
+//            pImage->setAnchorPoint(ccp(0, 0));
         }
 
         if (m_pDisabledImage)
