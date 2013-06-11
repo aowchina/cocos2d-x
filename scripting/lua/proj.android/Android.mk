@@ -13,6 +13,7 @@ LOCAL_SRC_FILES := ../cocos2dx_support/CCLuaBridge.cpp \
           ../cocos2dx_support/LuaCocos2d.cpp \
           ../cocos2dx_support/CCBProxy.cpp \
           ../cocos2dx_support/Lua_extensions_CCB.cpp \
+          ../cocos2dx_support/Lua_web_socket.cpp \
           ../tolua/tolua_event.c \
           ../tolua/tolua_is.c \
           ../tolua/tolua_map.c \
@@ -22,7 +23,7 @@ LOCAL_SRC_FILES := ../cocos2dx_support/CCLuaBridge.cpp \
           
 LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/../luajit/include \
                            $(LOCAL_PATH)/../tolua \
-                           $(LOCAL_PATH)/../cocos2dx_support 
+                           $(LOCAL_PATH)/../cocos2dx_support
           
           
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/ \
@@ -40,9 +41,11 @@ LOCAL_CFLAGS += -std=c99
 LOCAL_CXXFLAGS += -fexceptions -fasm-blocks -fstrict-aliasing -g -fvisibility-inlines-hidden -std=gnu++11 -D__GXX_EXPERIMENTAL_CXX0X__
 LOCAL_ARM_NEON := true
 LOCAL_WHOLE_STATIC_LIBRARIES := luajit_static
+LOCAL_WHOLE_STATIC_LIBRARIES += cocos_extension_static
 
 LOCAL_EXPORT_CFLAGS += -fexceptions -fasm-blocks -fstrict-aliasing -g -fvisibility-inlines-hidden -std=gnu++11 -D__GXX_EXPERIMENTAL_CXX0X__
 
 include $(BUILD_STATIC_LIBRARY)
 
 $(call import-module,scripting/lua/luajit)
+$(call import-module,extensions)
