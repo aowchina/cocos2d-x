@@ -323,9 +323,9 @@ static bool _initWithString(const char * pText, cocos2d::CCImage::ETextAlign eAl
         
         // measure text size with specified font and determine the rectangle to draw text in
         unsigned uHoriFlag = eAlign & 0x0f;
-        UITextAlignment align = (UITextAlignment)((2 == uHoriFlag) ? UITextAlignmentRight
-                                : (3 == uHoriFlag) ? UITextAlignmentCenter
-                                : UITextAlignmentLeft);
+        NSTextAlignment align = (NSTextAlignment)((2 == uHoriFlag) ? NSTextAlignmentRight
+                                : (3 == uHoriFlag) ? NSTextAlignmentCenter
+                                : NSTextAlignmentLeft);
 
         
         // take care of stroke if needed
@@ -390,7 +390,7 @@ static bool _initWithString(const char * pText, cocos2d::CCImage::ETextAlign eAl
         
         
         // actually draw the text in the context
-        [str drawInRect:CGRectMake(textOriginX, textOrigingY, textWidth, textHeight) withFont:font lineBreakMode:(UILineBreakMode)UILineBreakModeWordWrap alignment:align];
+        [str drawInRect:CGRectMake(textOriginX, textOrigingY, textWidth, textHeight) withFont:font lineBreakMode:(NSLineBreakMode)UILineBreakModeWordWrap alignment:align];
         
         // pop the context
         UIGraphicsPopContext();
