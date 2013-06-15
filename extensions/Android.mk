@@ -5,7 +5,7 @@ LOCAL_MODULE    := cocos_extension_static
 
 LOCAL_MODULE_FILENAME := libextension
 
-LOCAL_SRC_FILES := AssetsManager/AssetsManager.cpp \
+LOCAL_SRC_FILES := \
 CCBReader/CCBFileLoader.cpp \
 CCBReader/CCBReader.cpp \
 CCBReader/CCControlButtonLoader.cpp \
@@ -28,7 +28,6 @@ CCBReader/CCBKeyframe.cpp \
 CCBReader/CCBSequence.cpp \
 CCBReader/CCBSequenceProperty.cpp \
 CCBReader/CCBValue.cpp \
-CCBReader/CCData.cpp \
 CCBReader/CCNode+CCBRelativePositioning.cpp \
 GUI/CCControlExtension/CCControl.cpp \
 GUI/CCControlExtension/CCControlButton.cpp \
@@ -48,8 +47,6 @@ GUI/CCScrollView/CCTableViewCell.cpp \
 GUI/CCScrollView/CCSorting.cpp \
 GUI/CCEditBox/CCEditBox.cpp \
 GUI/CCEditBox/CCEditBoxImplAndroid.cpp \
-network/HttpClient.cpp \
-network/WebSocket.cpp \
 physics_nodes/CCPhysicsDebugNode.cpp \
 physics_nodes/CCPhysicsSprite.cpp \
 LocalStorage/LocalStorageAndroid.cpp \
@@ -132,7 +129,7 @@ include $(BUILD_STATIC_LIBRARY)
 
 $(call import-module,cocos2dx)
 $(call import-module,CocosDenshion/android)
-$(call import-module,cocos2dx/platform/third_party/android/prebuilt/libcurl)
+#$(call import-module,cocos2dx/platform/third_party/android/prebuilt/libcurl)
 $(call import-module,external/Box2D)
 $(call import-module,external/chipmunk)
 $(call import-module,external/libwebsockets/android)
