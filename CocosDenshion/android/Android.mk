@@ -18,10 +18,13 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/../include \
                     $(LOCAL_PATH)/../../cocos2dx/kazmath/include \
                     $(LOCAL_PATH)/../../cocos2dx/platform/android
 
-LOCAL_ARM_NEON := true
 LOCAL_CFLAGS += -std=c99
 LOCAL_CXXFLAGS := -fexceptions -fasm-blocks -fstrict-aliasing -g -fvisibility-inlines-hidden -std=gnu++11 -D__GXX_EXPERIMENTAL_CXX0X__
 
 LOCAL_EXPORT_CXXFLAGS += -fexceptions -fasm-blocks -fstrict-aliasing -g -fvisibility-inlines-hidden -std=gnu++11 -D__GXX_EXPERIMENTAL_CXX0X__
+
+ifeq ($(TARGET_ARCH_ABI),armeabi-v7a)
+	LOCAL_ARM_NEON = true
+endif
 
 include $(BUILD_STATIC_LIBRARY)

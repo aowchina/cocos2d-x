@@ -168,13 +168,18 @@ LOCAL_WHOLE_STATIC_LIBRARIES += cocos_libtiff_static
 LOCAL_WHOLE_STATIC_LIBRARIES += cocos_libwebp_static
 
 # define the macro to compile through support/zip_support/ioapi.c
-LOCAL_CFLAGS := -std=c99 -fexceptions -fasm-blocks -g -fvisibility-inlines-hidden -DUSE_FILE32API -DANDROID -D__ARM_NEON__
-LOCAL_EXPORT_CFLAGS := -fexceptions -fasm-blocks -g -fvisibility-inlines-hidden -DUSE_FILE32API -DANDROID -D__ARM_NEON__
+LOCAL_CFLAGS := -std=c99 -fexceptions -fasm-blocks -g -fvisibility-inlines-hidden -DUSE_FILE32API -DANDROID
+LOCAL_EXPORT_CFLAGS := -fexceptions -fasm-blocks -g -fvisibility-inlines-hidden -DUSE_FILE32API -DANDROID
 
-LOCAL_ARM_NEON := true
 LOCAL_CXXFLAGS += -fexceptions -fasm-blocks -fstrict-aliasing -g -fvisibility-inlines-hidden -std=gnu++11 -D__GXX_EXPERIMENTAL_CXX0X__
 
 LOCAL_EXPORT_CXXFLAGS := -fexceptions -fasm-blocks -g -fvisibility-inlines-hidden -std=gnu++11 -D__GXX_EXPERIMENTAL_CXX0X__i -DUSE_FILE32API -g -o0 -DANDROID
+
+ifeq ($(TARGET_ARCH_ABI),armeabi-v7a)
+	LOCAL_ARM_NEON = true
+	LOCAL_CFLAGS += -D__ARM_NEON__
+	LOCAL_EXPORT_CFLAGS += -D__ARM_NEON__
+endif
 
 include $(BUILD_STATIC_LIBRARY)
 

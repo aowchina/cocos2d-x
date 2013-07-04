@@ -123,7 +123,9 @@ LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH) \
 
 LOCAL_CFLAGS := -fexceptions
 
-LOCAL_ARM_NEON := true
+ifeq ($(TARGET_ARCH_ABI),armeabi-v7a)
+	LOCAL_ARM_NEON = true
+endif
                     
 include $(BUILD_STATIC_LIBRARY)
 
