@@ -92,6 +92,8 @@ enum {
 Structure that contains the values of each particle
 */
 typedef struct sCCParticle {
+	uint64_t    u64Loop;
+	uint32_t    uIndex;
     CCPoint     pos;
     CCPoint     startPos;
 
