@@ -769,7 +769,7 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"${COCOS2DX_ROOT}/cocos2dx/include",
-					"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/c++/**",
+					"\"$(SDKROOT)/usr/lib/c++\"/**",
 					"\"$(SDKROOT)/usr/include/libxml2\"",
 					/usr/local/include,
 					"${COCOS2DX_ROOT}/cocos2dx",
@@ -814,7 +814,7 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"${COCOS2DX_ROOT}/cocos2dx/include",
-					"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/c++/**",
+					"\"$(SDKROOT)/usr/lib/c++\"/**",
 					"\"$(SDKROOT)/usr/include/libxml2\"",
 					/usr/local/include,
 					"${COCOS2DX_ROOT}/cocos2dx",
