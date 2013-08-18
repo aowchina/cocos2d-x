@@ -519,7 +519,7 @@ kmQuaternion* kmQuaternionRotationBetweenVec3(kmQuaternion* pOut, const kmVec3* 
         return pOut;
     }
 
-    if (a < (1e-6f - 1.0f))    {
+    if (a < (1e-4f - 1.0f))    {
         if (fabs(kmVec3LengthSq(fallback)) < kmEpsilon) {
             kmQuaternionRotationAxis(pOut, fallback, kmPI);
         } else {
