@@ -229,6 +229,7 @@ It should work same as apples CFSwapInt32LittleToHost(..)
 
 #endif
 
+#define COCOS2D_DEBUG (0)
 #if !defined(COCOS2D_DEBUG) || COCOS2D_DEBUG == 0
 #define CHECK_GL_ERROR_DEBUG()
 #else
