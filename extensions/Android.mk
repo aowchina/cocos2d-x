@@ -99,7 +99,9 @@ spine/spine-cocos2dx.cpp \
 Components/CCComAttribute.cpp \
 Components/CCComAudio.cpp \
 Components/CCComController.cpp \
-Components/CCInputDelegate.cpp
+Components/CCInputDelegate.cpp \
+network/HttpClient.cpp \
+network/WebSocket.cpp
 
 LOCAL_WHOLE_STATIC_LIBRARIES := cocos2dx_static
 LOCAL_WHOLE_STATIC_LIBRARIES += cocosdenshion_static
@@ -131,7 +133,7 @@ include $(BUILD_STATIC_LIBRARY)
 
 $(call import-module,cocos2dx)
 $(call import-module,CocosDenshion/android)
-#$(call import-module,cocos2dx/platform/third_party/android/prebuilt/libcurl)
+$(call import-module,cocos2dx/platform/third_party/android/prebuilt/libcurl)
 $(call import-module,external/Box2D)
 $(call import-module,external/chipmunk)
 $(call import-module,external/libwebsockets/android)
