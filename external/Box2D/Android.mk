@@ -57,7 +57,10 @@ LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/..
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/..
 
-LOCAL_ARM_NEON := true
+ifeq ($(TARGET_ARCH_ABI),armeabi-v7a)
+	LOCAL_ARM_NEON = true
+endif
+
 LOCAL_CXXFLAGS += -fexceptions -fasm-blocks -fstrict-aliasing -g -fvisibility-inlines-hidden -std=gnu++11 -D__GXX_EXPERIMENTAL_CXX0X__
                                  
 include $(BUILD_STATIC_LIBRARY)

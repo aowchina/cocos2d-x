@@ -678,7 +678,7 @@ void CCTextureAtlas::drawNumberOfQuads(unsigned int n, unsigned int start)
 #endif // CC_TEXTURE_ATLAS_USE_VAO
 
     CC_INCREMENT_GL_DRAWS(1);
-    CHECK_GL_ERROR_DEBUG();
+//    CHECK_GL_ERROR_DEBUG();
 }
 
 

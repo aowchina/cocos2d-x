@@ -89,6 +89,9 @@ public:
     CCTexture2D* addImage(const char* fileimage);
 
     CCTexture2D* addImage(const char* fileimage, const char *key);
+	
+	//For Aow RPFLoader
+	CCTexture2D* addImageWithData(const char* pData, int nSize, const char *key);
 
     /* Returns a Texture2D object given a file image
     * If the file image was not previously loaded, it will create a new CCTexture2D object and it will return it.

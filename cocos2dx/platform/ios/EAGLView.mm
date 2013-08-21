@@ -322,7 +322,7 @@ static EAGLView *view = 0;
         }
 
 #if COCOS2D_DEBUG
-    CHECK_GL_ERROR();
+//    CHECK_GL_ERROR();
 #endif
     
     // We can safely re-bind the framebuffer here, since this will be the

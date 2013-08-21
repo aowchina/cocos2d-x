@@ -42,6 +42,7 @@ static pthread_mutex_t		s_SleepMutex;
 static pthread_cond_t		s_SleepCondition;
 
 static unsigned long    s_asyncRequestCount = 0;
+static std::string s_strCookieFile;
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 typedef int int32_t;
@@ -347,6 +348,8 @@ static int processPostTask(CCHttpRequest *request, write_callback callback, void
             && curl.setOption(CURLOPT_POST, 1)
             && curl.setOption(CURLOPT_POSTFIELDS, request->getRequestData())
             && curl.setOption(CURLOPT_POSTFIELDSIZE, request->getRequestDataSize())
+			&& curl.setOption(CURLOPT_COOKIEFILE, s_strCookieFile.c_str())
+			&& curl.setOption(CURLOPT_COOKIEJAR, s_strCookieFile.c_str())
             && curl.perform(responseCode);
     return ok ? 0 : 1;
 }
@@ -359,6 +362,8 @@ static int processPutTask(CCHttpRequest *request, write_callback callback, void 
             && curl.setOption(CURLOPT_CUSTOMREQUEST, "PUT")
             && curl.setOption(CURLOPT_POSTFIELDS, request->getRequestData())
             && curl.setOption(CURLOPT_POSTFIELDSIZE, request->getRequestDataSize())
+			&& curl.setOption(CURLOPT_COOKIEFILE, s_strCookieFile.c_str())
+			&& curl.setOption(CURLOPT_COOKIEJAR, s_strCookieFile.c_str())
             && curl.perform(responseCode);
     return ok ? 0 : 1;
 }
@@ -370,6 +375,8 @@ static int processDeleteTask(CCHttpRequest *request, write_callback callback, vo
     bool ok = curl.init(request, callback, stream, headerCallback, headerStream)
             && curl.setOption(CURLOPT_CUSTOMREQUEST, "DELETE")
             && curl.setOption(CURLOPT_FOLLOWLOCATION, true)
+			&& curl.setOption(CURLOPT_COOKIEFILE, s_strCookieFile.c_str())
+			&& curl.setOption(CURLOPT_COOKIEJAR, s_strCookieFile.c_str())
             && curl.perform(responseCode);
     return ok ? 0 : 1;
 }
@@ -379,6 +386,10 @@ CCHttpClient* CCHttpClient::getInstance()
 {
     if (s_pHttpClient == NULL) {
         s_pHttpClient = new CCHttpClient();
+		
+		s_strCookieFile = CCFileUtils::sharedFileUtils()->getWritablePath();
+		s_strCookieFile.append("cookie.txt");
+		CCLog("CCHttpClient cookie file:%s", s_strCookieFile.c_str());
     }
     
     return s_pHttpClient;

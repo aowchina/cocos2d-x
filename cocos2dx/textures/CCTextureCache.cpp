@@ -661,6 +661,67 @@ CCTexture2D* CCTextureCache::addUIImage(CCImage *image, const char *key)
     return texture;
 }
 
+//________________________________________________________________________________________________________
+//For Aow RPFLoader
+CCTexture2D* CCTextureCache::addImageWithData(const char* pData, int nSize, const char *key)
+{
+	if(!pData || nSize<=0 || !key) return 0;
+	
+    CCTexture2D * texture = 0;
+    CCImage* pImage = 0;
+    texture = (CCTexture2D*)m_pTextures->objectForKey(key);
+	if(texture) return texture;
+	
+	std::string lowerCase(key);
+	for (unsigned int i = 0; i < lowerCase.length(); ++i)
+	{
+		lowerCase[i] = tolower(lowerCase[i]);
+	}
+	do
+	{
+		CCImage::EImageFormat eImageFormat = CCImage::kFmtUnKnown;
+		if (std::string::npos != lowerCase.find(".png"))
+		{
+			eImageFormat = CCImage::kFmtPng;
+		}
+		else if (std::string::npos != lowerCase.find(".jpg") || std::string::npos != lowerCase.find(".jpeg"))
+		{
+			eImageFormat = CCImage::kFmtJpg;
+		}
+		else if (std::string::npos != lowerCase.find(".tif") || std::string::npos != lowerCase.find(".tiff"))
+		{
+			eImageFormat = CCImage::kFmtTiff;
+		}
+		else if (std::string::npos != lowerCase.find(".webp"))
+		{
+			eImageFormat = CCImage::kFmtWebp;
+		}
+		
+		pImage = new CCImage();
+		CC_BREAK_IF(NULL == pImage);
+		
+		bool bRet = pImage->initWithImageData((void*)pData, nSize, eImageFormat);
+		CC_BREAK_IF(!bRet);
+		
+		texture = new CCTexture2D();
+		
+		if( texture && texture->initWithImage(pImage) )
+		{
+			m_pTextures->setObject(texture, key);
+			texture->release();
+		}
+		else
+		{
+			CCLOG("cocos2d: Couldn't create texture for key:%s in CCTextureCache", key);
+			CC_SAFE_DELETE(texture);
+		}
+	}while(0);
+	
+    CC_SAFE_RELEASE(pImage);
+	
+	return texture;
+}
+
 // TextureCache - Remove
 
 void CCTextureCache::removeAllTextures()

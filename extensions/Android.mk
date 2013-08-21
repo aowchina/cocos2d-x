@@ -5,7 +5,7 @@ LOCAL_MODULE    := cocos_extension_static
 
 LOCAL_MODULE_FILENAME := libextension
 
-LOCAL_SRC_FILES := AssetsManager/AssetsManager.cpp \
+LOCAL_SRC_FILES := \
 CCBReader/CCBFileLoader.cpp \
 CCBReader/CCBReader.cpp \
 CCBReader/CCControlButtonLoader.cpp \
@@ -28,7 +28,6 @@ CCBReader/CCBKeyframe.cpp \
 CCBReader/CCBSequence.cpp \
 CCBReader/CCBSequenceProperty.cpp \
 CCBReader/CCBValue.cpp \
-CCBReader/CCData.cpp \
 CCBReader/CCNode+CCBRelativePositioning.cpp \
 GUI/CCControlExtension/CCControl.cpp \
 GUI/CCControlExtension/CCControlButton.cpp \
@@ -48,8 +47,6 @@ GUI/CCScrollView/CCTableViewCell.cpp \
 GUI/CCScrollView/CCSorting.cpp \
 GUI/CCEditBox/CCEditBox.cpp \
 GUI/CCEditBox/CCEditBoxImplAndroid.cpp \
-network/HttpClient.cpp \
-network/WebSocket.cpp \
 physics_nodes/CCPhysicsDebugNode.cpp \
 physics_nodes/CCPhysicsSprite.cpp \
 LocalStorage/LocalStorageAndroid.cpp \
@@ -102,7 +99,9 @@ spine/spine-cocos2dx.cpp \
 Components/CCComAttribute.cpp \
 Components/CCComAudio.cpp \
 Components/CCComController.cpp \
-Components/CCInputDelegate.cpp
+Components/CCInputDelegate.cpp \
+network/HttpClient.cpp \
+network/WebSocket.cpp
 
 LOCAL_WHOLE_STATIC_LIBRARIES := cocos2dx_static
 LOCAL_WHOLE_STATIC_LIBRARIES += cocosdenshion_static
@@ -126,7 +125,9 @@ LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH) \
 
 LOCAL_CFLAGS := -fexceptions
 
-LOCAL_ARM_NEON := true
+ifeq ($(TARGET_ARCH_ABI),armeabi-v7a)
+	LOCAL_ARM_NEON = true
+endif
                     
 include $(BUILD_STATIC_LIBRARY)
 

@@ -588,7 +588,7 @@ void CCSprite::draw(void)
 
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
-    CHECK_GL_ERROR_DEBUG();
+//    CHECK_GL_ERROR_DEBUG();
 
 
 #if CC_SPRITE_DEBUG_DRAW == 1
