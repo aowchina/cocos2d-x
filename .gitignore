@@ -91,3 +91,10 @@ tools/jenkins_scripts/mac/android/userconf.ini
 # CTags
 tags
 .settings
+cocos2dx/platform/android/java/lint.xml
+extensions/network.1/HttpClient.cpp
+extensions/network.1/HttpClient.h
+extensions/network.1/HttpRequest.h
+extensions/network.1/HttpResponse.h
+extensions/network.1/WebSocket.cpp
+extensions/network.1/WebSocket.h
