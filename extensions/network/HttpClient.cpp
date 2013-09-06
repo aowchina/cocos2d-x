@@ -68,7 +68,8 @@ static size_t writeData(void *ptr, size_t size, size_t nmemb, void *stream)
     // add data to the end of recvBuffer
     // write data maybe called more than once in a single request
     recvBuffer->insert(recvBuffer->end(), (char*)ptr, (char*)ptr+sizes);
-    
+    CCLog("writeData:%s", (char*)ptr);
+	
     return sizes;
 }
 
@@ -81,6 +82,7 @@ static size_t writeHeaderData(void *ptr, size_t size, size_t nmemb, void *stream
     // add data to the end of recvBuffer
     // write data maybe called more than once in a single request
     recvBuffer->insert(recvBuffer->end(), (char*)ptr, (char*)ptr+sizes);
+    CCLog("writeHeaderData:%s", (char*)ptr);
     
     return sizes;
 }
@@ -200,6 +202,7 @@ static void* networkThread(void *data)
         pthread_mutex_unlock(&s_responseQueueMutex);
         
         // resume dispatcher selector
+		CCLog("resumeTarget CCHttpClient::getInstance()");
         CCDirector::sharedDirector()->getScheduler()->resumeTarget(CCHttpClient::getInstance());
     }
     
@@ -478,7 +481,7 @@ void CCHttpClient::send(CCHttpRequest* request)
 // Poll and notify main thread if responses exists in queue
 void CCHttpClient::dispatchResponseCallbacks(float delta)
 {
-    // CCLog("CCHttpClient::dispatchResponseCallbacks is running");
+    CCLog("CCHttpClient::dispatchResponseCallbacks is running");
     
     CCHttpResponse* response = NULL;
     
