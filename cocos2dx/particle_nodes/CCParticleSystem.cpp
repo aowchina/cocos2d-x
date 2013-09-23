@@ -494,7 +494,7 @@ void CCParticleSystem::initParticle(tCCParticle* particle)
     particle->color = start;
     particle->deltaColor.r = (end.r - start.r) / particle->timeToLive;
     particle->deltaColor.g = (end.g - start.g) / particle->timeToLive;
-    particle->deltaColor.b = (end.b - start.b) / particle->timeToLive;
+    particle->deltaColor.b = (end.b - start.b) / particle->timeToLive;     
     particle->deltaColor.a = (end.a - start.a) / particle->timeToLive;
 
     // size
