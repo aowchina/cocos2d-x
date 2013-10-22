@@ -157,11 +157,12 @@ public:
     @param pszFilePath The path of the effect file,or the FileName of T_SoundResInfo
     @bLoop Whether to loop the effect playing, default value is false
     */
-    unsigned int playEffect(const char* pszFilePath, bool bLoop);
+	//change for aow
+    unsigned int playEffect(const char* pszFilePath, bool bLoop, float fPitch, float fPan=0.0f, float fGain=1.0f);
     unsigned int playEffect(const char* pszFilePath) {
-    	return this->playEffect(pszFilePath, false);
+    	return this->playEffect(pszFilePath, false, 1.0f, 0.0f, 1.0f);
     }
-
+	
     /**
     @brief Pause playing sound effect
     @param nSoundId The return value of function playEffect

@@ -191,8 +191,8 @@ void SimpleAudioEngine::setEffectsVolume(float volume)
 		setEffectsVolumeJNI(volume);
 	}
 }
-
-unsigned int SimpleAudioEngine::playEffect(const char* pszFilePath, bool bLoop)
+//change for aow
+unsigned int SimpleAudioEngine::playEffect(const char* pszFilePath, bool bLoop, float pitch, float pan, float gain)
 {
 	std::string fullPath = getFullPathWithoutAssetsPrefix(pszFilePath);
 	if (s_bI9100)
@@ -201,7 +201,7 @@ unsigned int SimpleAudioEngine::playEffect(const char* pszFilePath, bool bLoop)
 	}
 	else 
 	{
-		return playEffectJNI(fullPath.c_str(), bLoop);
+		return playEffectJNI(fullPath.c_str(), bLoop, pitch, pan, gain);
 	}
 }
 

@@ -169,8 +169,9 @@ public class Cocos2dxHelper {
 		Cocos2dxHelper.sCocos2dSound.preloadEffect(path);
 	}
 
-	public static int playEffect(final String path, final boolean isLoop) {
-		return Cocos2dxHelper.sCocos2dSound.playEffect(path, isLoop);
+	//change for aow
+	public static int playEffect(final String path, final boolean isLoop, final float fPitch, final float fPan, final float fGain) {
+		return Cocos2dxHelper.sCocos2dSound.playEffect(path, isLoop, fPitch, fPan, fGain);
 	}
 
 	public static void resumeEffect(final int soundId) {
