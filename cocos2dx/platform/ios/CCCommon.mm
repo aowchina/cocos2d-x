@@ -33,6 +33,8 @@ NS_CC_BEGIN
 
 void CCLog(const char * pszFormat, ...)
 {
+#ifdef _AOW_NOLOG_
+#else
     printf("Cocos2d: ");
     char szBuf[kMaxLogLen+1] = {0};
     va_list ap;
@@ -41,6 +43,7 @@ void CCLog(const char * pszFormat, ...)
     va_end(ap);
     printf("%s", szBuf);
     printf("\n");
+#endif
 }
 
 // ios no MessageBox, use CCLog instead
