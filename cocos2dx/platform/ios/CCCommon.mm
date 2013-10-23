@@ -35,6 +35,10 @@ NS_CC_BEGIN
 
 void CCLog(const char * pszFormat, ...)
 {
+	
+#ifdef _AOW_NOLOG_
+#else
+    printf("Cocos2d: ");
     cc_timeval tt;
 	CCTime::gettimeofdayCocos2d(&tt, nullptr);
 	
@@ -48,6 +52,7 @@ void CCLog(const char * pszFormat, ...)
 	int n_US = tt.tv_usec / 1000;
 	
 	printf("Cocos2d %02d:%02d:%02d:%03d: ", n_H, n_M, n_S, n_US);
+
     char szBuf[kMaxLogLen+1] = {0};
     va_list ap;
     va_start(ap, pszFormat);
@@ -55,6 +60,7 @@ void CCLog(const char * pszFormat, ...)
     va_end(ap);
     printf("%s", szBuf);
     printf("\n");
+#endif
 }
 
 // ios no MessageBox, use CCLog instead

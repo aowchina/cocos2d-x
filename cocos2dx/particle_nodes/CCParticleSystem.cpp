@@ -594,6 +594,7 @@ void CCParticleSystem::resetSystem()
         p->timeToLive = 0;
     }
 }
+
 bool CCParticleSystem::isFull()
 {
     return (m_uParticleCount == m_uTotalParticles);
