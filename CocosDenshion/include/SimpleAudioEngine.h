@@ -158,7 +158,7 @@ public:
     @bLoop Whether to loop the effect playing, default value is false
     */
 	//change for aow
-    unsigned int playEffect(const char* pszFilePath, bool bLoop, float fPitch, float fPan=0.0f, float fGain=1.0f);
+    unsigned int playEffect(const char* pszFilePath, bool bLoop, float fPitch=1.0f, float fPan=0.0f, float fGain=1.0f);
     unsigned int playEffect(const char* pszFilePath) {
     	return this->playEffect(pszFilePath, false, 1.0f, 0.0f, 1.0f);
     }
