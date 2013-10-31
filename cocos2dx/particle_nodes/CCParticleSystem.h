@@ -408,7 +408,7 @@ public:
     //! Add a particle to the emitter
     bool addParticle();
     //! Initializes a particle
-    void initParticle(tCCParticle* particle);
+    virtual void initParticle(tCCParticle* particle);
     //! stop emitting particles. Running particles will continue to run until they die
     void stopSystem();
     //! Kill all living particles.

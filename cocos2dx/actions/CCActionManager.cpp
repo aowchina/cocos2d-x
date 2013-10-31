@@ -234,10 +234,10 @@ void CCActionManager::removeAllActionsFromTarget(CCObject *pTarget)
             deleteHashElement(pElement);
         }
     }
-    else
-    {
-//        CCLOG("cocos2d: removeAllActionsFromTarget: Target not found");
-    }
+//    else
+//    {
+////        CCLOG("cocos2d: removeAllActionsFromTarget: Target not found");
+//    }
 }
 
 void CCActionManager::removeAction(CCAction *pAction)
@@ -259,10 +259,10 @@ void CCActionManager::removeAction(CCAction *pAction)
             removeActionAtIndex(i, pElement);
         }
     }
-    else
-    {
+//    else
+//    {
 //        CCLOG("cocos2d: removeAction: Target not found");
-    }
+//    }
 }
 
 void CCActionManager::removeActionByTag(unsigned int tag, CCObject *pTarget)
@@ -315,10 +315,10 @@ CCAction* CCActionManager::getActionByTag(unsigned int tag, CCObject *pTarget)
         }
         CCLOG("cocos2d : getActionByTag(tag = %d): Action not found", tag);
     }
-    else
-    {
-        // CCLOG("cocos2d : getActionByTag: Target not found");
-    }
+//    else
+//    {
+//        // CCLOG("cocos2d : getActionByTag: Target not found");
+//    }
 
     return NULL;
 }

@@ -289,18 +289,20 @@ static bool _initWithString(const char * pText, cocos2d::CCImage::ETextAlign eAl
         // add the padding (this could be 0 if no shadow and no stroke)
         dim.width  += shadowStrokePaddingX;
         dim.height += shadowStrokePaddingY;
-        
-        
+    
+	const int tmp_width  = dim.width;
+	const int tmp_height = dim.height;
+    
         unsigned char* data = new unsigned char[(int)(dim.width * dim.height * 4)];
         memset(data, 0, (int)(dim.width * dim.height * 4));
         
         // draw text
         CGColorSpaceRef colorSpace  = CGColorSpaceCreateDeviceRGB();
         CGContextRef context        = CGBitmapContextCreate(data,
-                                                            dim.width,
-                                                            dim.height,
+                                                            tmp_width,
+                                                            tmp_height,
                                                             8,
-                                                            dim.width * 4,
+                                                            tmp_width * 4,
                                                             colorSpace,
                                                             kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
         
