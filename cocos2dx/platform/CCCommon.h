@@ -37,6 +37,7 @@ NS_CC_BEGIN
 /// The max length of CCLog message.
 static const int kMaxLogLen = 16*1024;
 
+void TMPLog( const char* fmt, ... );
 /**
 @brief Output Debug message.
 */

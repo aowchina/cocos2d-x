@@ -66,6 +66,21 @@ void CCLog(const char * pszFormat, ...)
 }
 */
 
+void TMPLog( const char* fmt, ... ){
+    static FILE* g_tmp_log_fp = NULL;
+    if ( NULL == g_tmp_log_fp ){
+        g_tmp_log_fp = fopen("/tmp/aow.tmplog", "a");
+    }
+    va_list ap;
+    va_start(ap, fmt);
+    vfprintf(g_tmp_log_fp, fmt, ap);
+    
+    fprintf(g_tmp_log_fp, "\n");
+    fflush(g_tmp_log_fp);
+    va_end(ap);
+}
+
+
 void CCLog(const char * pszFormat, ...)
 {
     cc_timeval tt;
