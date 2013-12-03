@@ -71,6 +71,9 @@ void TMPLog( const char* fmt, ... ){
     if ( NULL == g_tmp_log_fp ){
         g_tmp_log_fp = fopen("/tmp/aow.tmplog", "a");
     }
+    
+    fprintf(g_tmp_log_fp, "%ld: ", time(NULL));
+    
     va_list ap;
     va_start(ap, fmt);
     vfprintf(g_tmp_log_fp, fmt, ap);
