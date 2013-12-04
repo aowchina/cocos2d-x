@@ -48,6 +48,7 @@ void CCLog(const char * pszFormat, ...)
 
 void CCLog(const char * pszFormat, ...)
 {
+    return ;
     char buf[MAX_LEN];
 	
 	struct timeval timeCur;
