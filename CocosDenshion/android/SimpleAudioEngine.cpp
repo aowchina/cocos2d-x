@@ -199,7 +199,7 @@ unsigned int SimpleAudioEngine::playEffect(const char* pszFilePath, bool bLoop, 
 	if (s_bI9100)
 	{
 //		return SimpleAudioEngineOpenSL::sharedEngine()->playEffect(fullPath.c_str(), bLoop);
-		reutrn 0;
+		return 0;
 	}
 	else 
 	{
