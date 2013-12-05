@@ -94,9 +94,9 @@ static void static_setEffectsVolume(float volume)
     [SimpleAudioEngine sharedEngine].effectsVolume = volume;
 }
      
-static unsigned int static_playEffect(const char* pszFilePath, bool bLoop)
+static unsigned int static_playEffect(const char* pszFilePath, bool bLoop, float fPitch, float fPan, float fGain)
 {
-    return [[SimpleAudioEngine sharedEngine] playEffect:[NSString stringWithUTF8String: pszFilePath] loop:bLoop]; 
+    return [[SimpleAudioEngine sharedEngine] playEffect:[NSString stringWithUTF8String: pszFilePath] loop:bLoop pitch:fPitch pan:fPan gain:fGain]; 
 }
      
 static void static_stopEffect(int nSoundId)
@@ -238,11 +238,11 @@ void SimpleAudioEngine::setEffectsVolume(float volume)
     static_setEffectsVolume(volume);
 }
 
-unsigned int SimpleAudioEngine::playEffect(const char* pszFilePath, bool bLoop)
+unsigned int SimpleAudioEngine::playEffect(const char* pszFilePath, bool bLoop, float fPitch, float fPan, float fGain)
 {
     // Changing file path to full path
     std::string fullPath = CCFileUtils::sharedFileUtils()->fullPathForFilename(pszFilePath);
-    return static_playEffect(fullPath.c_str(), bLoop);
+    return static_playEffect(fullPath.c_str(), bLoop, fPitch, fPan, fGain);
 }
 
 void SimpleAudioEngine::stopEffect(unsigned int nSoundId)
