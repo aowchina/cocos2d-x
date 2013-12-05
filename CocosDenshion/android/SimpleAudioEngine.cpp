@@ -227,7 +227,7 @@ void SimpleAudioEngine::preloadEffect(const char* pszFilePath)
 	}
 	else
 	{
-		preloadEffectJNI(fullPath.c_str());
+		//preloadEffectJNI(fullPath.c_str());
 	}
 }
 
@@ -241,7 +241,7 @@ void SimpleAudioEngine::unloadEffect(const char* pszFilePath)
 	}
 	else
 	{
-		unloadEffectJNI(fullPath.c_str());
+		//unloadEffectJNI(fullPath.c_str());
 	}
 }
 
