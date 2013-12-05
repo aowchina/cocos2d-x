@@ -78,7 +78,9 @@ CCObject* CCObject::copy()
 
 void CCObject::release(void)
 {
-    CCAssert(m_uReference > 0, "reference count should greater than 0");
+    CCAssert(m_uReference > 0, "release,reference count should greater than 0");
+	if(0 == m_uReference)
+		CCLog("CCObject:0x%08x release", (int)this);
     --m_uReference;
 
     if (m_uReference == 0)
@@ -89,7 +91,7 @@ void CCObject::release(void)
 
 void CCObject::retain(void)
 {
-    CCAssert(m_uReference > 0, "reference count should greater than 0");
+    CCAssert(m_uReference > 0, "retain,reference count should greater than 0");
 
     ++m_uReference;
 }
