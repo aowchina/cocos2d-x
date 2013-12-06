@@ -176,9 +176,9 @@ ifeq ($(TARGET_ARCH_ABI),armeabi-v7a)
 	LOCAL_CFLAGS += -D__ARM_NEON__
 	LOCAL_EXPORT_CFLAGS += -D__ARM_NEON__
 endif
-LOCAL_CXXFLAGS += -fexceptions -fasm-blocks -fstrict-aliasing -g -fvisibility-inlines-hidden -std=gnu++11 -D__GXX_EXPERIMENTAL_CXX0X__
+LOCAL_CXXFLAGS += -fexceptions -fasm-blocks -fstrict-aliasing -fvisibility-inlines-hidden -std=gnu++11 -D__GXX_EXPERIMENTAL_CXX0X__
 
-LOCAL_EXPORT_CXXFLAGS := -fexceptions -fasm-blocks -g -fvisibility-inlines-hidden -std=gnu++11 -D__GXX_EXPERIMENTAL_CXX0X__i -DUSE_FILE32API -g -o0 -DANDROID
+LOCAL_EXPORT_CXXFLAGS := -fexceptions -fasm-blocks -fvisibility-inlines-hidden -std=gnu++11 -D__GXX_EXPERIMENTAL_CXX0X__i -DUSE_FILE32API -o2 -DANDROID
 
 include $(BUILD_STATIC_LIBRARY)
 
