@@ -48,7 +48,7 @@ void CCLog(const char * pszFormat, ...)
 
 void CCLog(const char * pszFormat, ...)
 {
-    return ;
+#ifndef _AOW_NOLOG_
     char buf[MAX_LEN];
 	
 	struct timeval timeCur;
@@ -62,6 +62,7 @@ void CCLog(const char * pszFormat, ...)
     va_end(args);
 	
     __android_log_print(ANDROID_LOG_DEBUG, "cocos2d-x debug info", "%s",  buf);
+#endif
 }
 
 void CCMessageBox(const char * pszMsg, const char * pszTitle)

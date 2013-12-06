@@ -172,7 +172,8 @@ float SimpleAudioEngine::getEffectsVolume()
 {
 	if (s_bI9100)
 	{
-		return SimpleAudioEngineOpenSL::sharedEngine()->getEffectsVolume();
+//		return SimpleAudioEngineOpenSL::sharedEngine()->getEffectsVolume();
+		return 0.0;
 	}
 	else
 	{
@@ -184,7 +185,7 @@ void SimpleAudioEngine::setEffectsVolume(float volume)
 {
 	if (s_bI9100)
 	{
-		SimpleAudioEngineOpenSL::sharedEngine()->setEffectsVolume(volume);
+//		SimpleAudioEngineOpenSL::sharedEngine()->setEffectsVolume(volume);
 	}
 	else
 	{
@@ -197,7 +198,8 @@ unsigned int SimpleAudioEngine::playEffect(const char* pszFilePath, bool bLoop, 
 	std::string fullPath = getFullPathWithoutAssetsPrefix(pszFilePath);
 	if (s_bI9100)
 	{
-		return SimpleAudioEngineOpenSL::sharedEngine()->playEffect(fullPath.c_str(), bLoop);
+//		return SimpleAudioEngineOpenSL::sharedEngine()->playEffect(fullPath.c_str(), bLoop);
+		return 0;
 	}
 	else 
 	{
@@ -209,7 +211,7 @@ void SimpleAudioEngine::stopEffect(unsigned int nSoundId)
 {
 	if (s_bI9100)
 	{
-		SimpleAudioEngineOpenSL::sharedEngine()->stopEffect(nSoundId);
+//		SimpleAudioEngineOpenSL::sharedEngine()->stopEffect(nSoundId);
 	}
 	else
 	{
@@ -223,11 +225,11 @@ void SimpleAudioEngine::preloadEffect(const char* pszFilePath)
 
 	if (s_bI9100)
 	{
-		SimpleAudioEngineOpenSL::sharedEngine()->preloadEffect(fullPath.c_str());
+//		SimpleAudioEngineOpenSL::sharedEngine()->preloadEffect(fullPath.c_str());
 	}
 	else
 	{
-		//preloadEffectJNI(fullPath.c_str());
+		preloadEffectJNI(fullPath.c_str());
 	}
 }
 
@@ -237,11 +239,11 @@ void SimpleAudioEngine::unloadEffect(const char* pszFilePath)
 
 	if (s_bI9100)
 	{
-		SimpleAudioEngineOpenSL::sharedEngine()->unloadEffect(fullPath.c_str());
+//		SimpleAudioEngineOpenSL::sharedEngine()->unloadEffect(fullPath.c_str());
 	}
 	else
 	{
-		//unloadEffectJNI(fullPath.c_str());
+		unloadEffectJNI(fullPath.c_str());
 	}
 }
 
@@ -249,7 +251,7 @@ void SimpleAudioEngine::pauseEffect(unsigned int nSoundId)
 {
 	if (s_bI9100)
 	{
-		SimpleAudioEngineOpenSL::sharedEngine()->pauseEffect(nSoundId);
+//		SimpleAudioEngineOpenSL::sharedEngine()->pauseEffect(nSoundId);
 	}
 	else
 	{
@@ -261,7 +263,7 @@ void SimpleAudioEngine::pauseAllEffects()
 {
 	if (s_bI9100)
 	{
-		SimpleAudioEngineOpenSL::sharedEngine()->pauseAllEffects();
+//		SimpleAudioEngineOpenSL::sharedEngine()->pauseAllEffects();
 	}
 	else
 	{
@@ -273,7 +275,7 @@ void SimpleAudioEngine::resumeEffect(unsigned int nSoundId)
 {
 	if (s_bI9100)
 	{
-		SimpleAudioEngineOpenSL::sharedEngine()->resumeEffect(nSoundId);
+//		SimpleAudioEngineOpenSL::sharedEngine()->resumeEffect(nSoundId);
 	}
 	else
 	{
@@ -285,7 +287,7 @@ void SimpleAudioEngine::resumeAllEffects()
 {
 	if (s_bI9100)
 	{
-		SimpleAudioEngineOpenSL::sharedEngine()->resumeAllEffects();
+//		SimpleAudioEngineOpenSL::sharedEngine()->resumeAllEffects();
 	}
 	else
 	{
@@ -297,7 +299,7 @@ void SimpleAudioEngine::stopAllEffects()
 {
 	if (s_bI9100)
 	{
-		SimpleAudioEngineOpenSL::sharedEngine()->stopAllEffects();
+//		SimpleAudioEngineOpenSL::sharedEngine()->stopAllEffects();
 	}
 	else
 	{
