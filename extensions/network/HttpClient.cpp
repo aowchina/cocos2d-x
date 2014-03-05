@@ -367,6 +367,7 @@ static int processPutTask(CCHttpRequest *request, write_callback callback, void 
             && curl.setOption(CURLOPT_POSTFIELDSIZE, request->getRequestDataSize())
 			&& curl.setOption(CURLOPT_COOKIEFILE, s_strCookieFile.c_str())
 			&& curl.setOption(CURLOPT_COOKIEJAR, s_strCookieFile.c_str())
+			&& curl.setOption(CURLOPT_NOSIGNAL, 1)
             && curl.perform(responseCode);
     return ok ? 0 : 1;
 }
@@ -380,6 +381,7 @@ static int processDeleteTask(CCHttpRequest *request, write_callback callback, vo
             && curl.setOption(CURLOPT_FOLLOWLOCATION, true)
 			&& curl.setOption(CURLOPT_COOKIEFILE, s_strCookieFile.c_str())
 			&& curl.setOption(CURLOPT_COOKIEJAR, s_strCookieFile.c_str())
+			&& curl.setOption(CURLOPT_NOSIGNAL, 1)
             && curl.perform(responseCode);
     return ok ? 0 : 1;
 }
