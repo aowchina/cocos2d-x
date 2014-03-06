@@ -61,10 +61,26 @@ THE SOFTWARE.
  
  Default value: Enabled by default
  
+ //崩溃问题试图屏蔽解决
+ at <JNI>.?(Native Method)
+ at <JNI>.glDrawElements(Native Method)
+ at <JNI>.cocos2d::CCTextureAtlas::drawNumberOfQuads(unsigned int, unsigned int)(Native Method)
+ at <JNI>.cocos2d::CCTextureAtlas::drawQuads()(Native Method)
+ at <JNI>.cocos2d::CCSpriteBatchNode::draw()(Native Method)
+ at <JNI>.cocos2d::CCSpriteBatchNode::visit()(Native Method)
+ at <JNI>.cocos2d::CCNode::visit()(Native Method)
+ at <JNI>.aow::Core::Entity::visit()(Native Method)
+ at <JNI>.aow::Game::MapBlock::draw() const(Native Method)
+ at org.cocos2dx.lib.Cocos2dxRenderer.nativeRender(Native Method)
+ at org.cocos2dx.lib.Cocos2dxRenderer.onDrawFrame(Cocos2dxRenderer.java:107)
+ at android.opengl.GLSurfaceView$GLThread.guardedRun(GLSurfaceView.java:1531)
+ at android.opengl.GLSurfaceView$GLThread.run(GLSurfaceView.java:1248)
+ //http://www.cocos2d-iphone.org/forums/topic/random-crash-glerunvertexsubmitimmediate/
+ 
  @since v2.0.0
  */
 #ifndef CC_ENABLE_GL_STATE_CACHE
-#define CC_ENABLE_GL_STATE_CACHE 1
+#define CC_ENABLE_GL_STATE_CACHE 0
 #endif
 
 /** @def CC_FIX_ARTIFACTS_BY_STRECHING_TEXEL
