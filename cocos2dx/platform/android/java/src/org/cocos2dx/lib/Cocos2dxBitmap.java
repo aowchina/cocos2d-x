@@ -367,7 +367,7 @@ public class Cocos2dxBitmap {
 		final LinkedList<String> strList = new LinkedList<String>();
 
 		/* Break a String into String[] by the width & should wrap the word. */
-		for (int i = 1; i <= charLength; ++i) {
+		for (int i = 1; i < charLength; ++i) {
 			tempWidth = (int) FloatMath.ceil(pPaint.measureText(pString, start,
 					i));
 			if (tempWidth >= pMaxWidth) {
@@ -390,7 +390,7 @@ public class Cocos2dxBitmap {
 				}
 
 				/* Remove spaces at the beginning of a new line. */
-				while (pString.charAt(i) == ' ') {
+				while (i < charLength && pString.charAt(i) == ' ') {
 					++i;
 				}
 
